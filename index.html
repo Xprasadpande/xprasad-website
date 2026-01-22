@@ -3,11 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project-Xprasad</title>
+    <title>Coming Soon</title>
+    <style>
+        /* CSS: Minimalist Dark Theme (Black & White) */
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #000000; /* Pure Black */
+            color: #ffffff; /* Pure White */
+            font-family: 'Courier New', Courier, monospace; /* Tech/Terminal Vibe */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem; /* Clean size */
+            font-weight: normal;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        /* Timer Layout */
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .number {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 0.75rem;
+            opacity: 0.6; /* Slight fade for elegance */
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .number { font-size: 2rem; }
+            #timer { gap: 1rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Hello World</h1>
+    <div class="container">
+        <h1>Something is Coming Soon</h1>
+
+        <div id="timer">
+            <div class="time-unit">
+                <span id="days" class="number">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="time-unit">
+                <span id="hours" class="number">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="time-unit">
+                <span id="minutes" class="number">00</span>
+                <span class="label">Minutes</span>
+            </div>
+            <div class="time-unit">
+                <span id="seconds" class="number">00</span>
+                <span class="label">Seconds</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Target Date: Feb 25, 2026
+        const targetDate = new Date("February 25, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update HTML
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // When countdown finishes
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".container").innerHTML = "<h1>Live.</h1>";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
