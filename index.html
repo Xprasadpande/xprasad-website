@@ -3,122 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/items/icon.png">
-    <title>Coming Soon</title>
+    <title>For Santo ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        /* CSS: Minimalist Dark Theme (Black & White) */
-        body, html {
-            height: 100%;
-            margin: 0;
-            background-color: #000000; /* Pure Black */
-            color: #ffffff; /* Pure White */
-            font-family: 'Courier New', Courier, monospace; /* Tech/Terminal Vibe */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        :root {
+            --pink: #ffafbd;
+            --rose: #ffc3a0;
+            --dark-pink: #d4145a;
         }
 
-        .container {
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--pink), var(--rose));
+            overflow: hidden;
             text-align: center;
-            padding: 20px;
         }
 
         h1 {
-            font-size: 2rem; /* Clean size */
-            font-weight: normal;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 3rem;
+            margin-bottom: 10px;
         }
 
-        /* Timer Layout */
-        #timer {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        .nickname {
+            font-style: italic;
+            color: var(--dark-pink);
         }
 
-        .time-unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .question {
+            font-size: 1.8rem;
+            color: #444;
+            margin-bottom: 30px;
         }
 
-        .number {
-            font-size: 3.5rem;
-            font-weight: bold;
+        .btn-container {
+            position: relative;
+            width: 300px;
+            height: 100px;
         }
 
-        .label {
-            font-size: 0.75rem;
-            opacity: 0.6; /* Slight fade for elegance */
-            text-transform: uppercase;
-            margin-top: 5px;
-            letter-spacing: 1px;
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: absolute;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            .number { font-size: 2rem; }
-            #timer { gap: 1rem; }
-            h1 { font-size: 1.5rem; }
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+            left: 0;
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            right: 0;
+            transition: all 0.2s ease;
+        }
+
+        #photoGallery {
+            display: none;
+            margin-top: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 1s forwards;
+        }
+
+        .photo {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 5px solid white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Something is Coming Soon</h1>
+    <div id="mainContent">
+        <h1>Hey <span class="nickname">Santo</span>...</h1>
+        <p class="question">Will you be my Valentine? 🌹</p>
 
-        <div id="timer">
-            <div class="time-unit">
-                <span id="days" class="number">00</span>
-                <span class="label">Days</span>
-            </div>
-            <div class="time-unit">
-                <span id="hours" class="number">00</span>
-                <span class="label">Hours</span>
-            </div>
-            <div class="time-unit">
-                <span id="minutes" class="number">00</span>
-                <span class="label">Minutes</span>
-            </div>
-            <div class="time-unit">
-                <span id="seconds" class="number">00</span>
-                <span class="label">Seconds</span>
-            </div>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="celebrate()">Yes!</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
         </div>
     </div>
 
+    <div id="photoGallery">
+        <h2>Yay! Best decision ever! ❤️</h2>
+        <img src="photo1.jpg" class="photo" alt="Us 1">
+        <img src="photo2.jpg" class="photo" alt="Us 2">
+        <img src="photo3.jpg" class="photo" alt="Us 3">
+        <img src="photo4.jpg" class="photo" alt="Us 4">
+    </div>
+
     <script>
-        // Target Date: Feb 25, 2026
-        const targetDate = new Date("February 25, 2026 00:00:00").getTime();
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            // Calculate random positions within the viewport
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
 
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        function celebrate() {
+            // Confetti effect
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
 
-            // Calculations
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update HTML
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            // When countdown finishes
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".container").innerHTML = "<h1>Live.</h1>";
-            }
-        }, 1000);
+            // Hide question and show photos
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('photoGallery').style.display = 'grid';
+        }
     </script>
-
 </body>
 </html>
 
