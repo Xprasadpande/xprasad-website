@@ -133,3 +133,42 @@ a.custom-link:hover {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================
+   MOBILE RESPONSIVENESS FIX
+   (Add this to the bottom of styles.css)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* 1. Shrink the main name so it fits on one line or wraps nicely */
+    #hero-name {
+        font-size: 3rem;   /* Down from 6rem */
+        letter-spacing: 1px;
+        line-height: 1.1;
+        margin-top: 20px;
+    }
+
+    /* 2. Adjust the code subtitle size */
+    .hero-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    /* 3. Make the paragraph readable with side padding */
+    .hero-content p {
+        font-size: 0.95rem;
+        padding: 0 20px;   /* Prevents text from hitting the screen edges */
+    }
+
+    /* 4. Stack the buttons vertically on mobile for a cleaner look */
+    .hero-content .d-flex {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center;
+    }
+
+    /* 5. Make buttons uniform width on mobile */
+    .hero-content .btn {
+        width: 80%;        /* Buttons take up 80% of screen width */
+        margin: 10px 0 !important; /* Force vertical spacing */
+    }
+}
