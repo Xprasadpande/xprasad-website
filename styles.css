@@ -1,0 +1,135 @@
+/* Custom Variable for easier color management */
+:root {
+    --bg-color: #000000;       /* Pitch Black */
+    --text-color: #ffffff;     /* Pure White */
+    --accent-gray: #333333;    /* Dark Gray for borders/cards */
+}
+
+/* 1. Selector: Element Tag (body) */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Courier New', Courier, monospace; /* Tech/Hacker vibe */
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. Selector: Class (.navbar-custom) */
+.navbar-custom {
+    border-bottom: 1px solid var(--text-color); /* White line under nav */
+}
+
+/* 3. Selector: ID (#main-heading) */
+#main-heading {
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* 4. Selector: Descendant (main p) */
+main p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #cccccc; /* Slightly softer white for reading */
+}
+
+/* 5. Selector: Pseudo-class (:hover) */
+a.custom-link:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* Utility class for buttons */
+.custom-link {
+    border: 1px solid var(--text-color);
+    padding: 10px 20px;
+    color: var(--text-color);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#canvas1 {
+    position: fixed; /* Stays in place when you scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;     /* IMP: Puts canvas BEHIND your text */
+    background: #000000;
+    opacity: 0.7;   /* Slightly transparent for better text visibility */
+}
+
+/* Update main-heading to ensure it pops over the animation */
+#main-heading {
+    text-shadow: 2px 2px 4px #000000; /* Adds shadow so text is readable over lines */
+}
+
+/* Project Card Styling */
+.project-card {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    border: 1px solid var(--text-color);    /* White border */
+    color: var(--text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Moves up slightly when hovered */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); /* White glow effect */
+}
+
+.card-subtitle {
+    color: #aaaaaa !important; /* Forces the subtitle to be light gray */
+}
+
+/* Interest Card Styling */
+.interest-card {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly more transparent */
+    border: 1px solid #444;               /* Subtle gray border */
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+.interest-card:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light up on hover */
+    border-color: var(--text-color);
+    transform: scale(1.02); /* Slight pop effect */
+}
+
+/* Contact Page Styling */
+.contact-card {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background for readability */
+    border: 1px solid var(--text-color);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.contact-btn {
+    border-radius: 50px; /* Pill-shaped buttons */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: translateY(-3px); /* Button lifts up */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3); /* Glow effect */
+}
+
+/* Hero Name Styling */
+#hero-name {
+    letter-spacing: 5px;          /* Spaced out letters look more "cinematic" */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glowing effect */
+    animation: fadeIn 2s ease-in; /* Fade in animation */
+}
+
+/* Simple fade-in animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
